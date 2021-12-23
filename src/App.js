@@ -42,6 +42,7 @@ function App() {
   let rowList;
   // let page = 0;
   const [pageData, setPageData] = useState(0);
+  const [scaleData, setScaleData] = useState(10)
   const onSaveRowHandler = (rowData) => {
     rowList = rowData;
   }
@@ -49,11 +50,17 @@ function App() {
     // page = pageChange;
     setPageData(pageChange);
   }
+  const scaleChangeHandler = (scaleValue) => {
+    setScaleData(+scaleValue);
+  }
+  console.log(typeof(scaleData));
 
   return (
     <div className='container'>
-      <Table data={students} onSaveRow={onSaveRowHandler} pageValue={pageData}/>
-      <Tabs data={rowList} pageValue={pageData} maxLength={students.length} onTabClick={tabClickHandler}/>
+      <Table data={students} onSaveRow={onSaveRowHandler} pageValue={pageData} scale={scaleData} />
+      <Tabs data={rowList} pageValue={pageData} maxLength={students.length} 
+            onTabClick={tabClickHandler} onScaleChange={scaleChangeHandler}
+            scale={scaleData} />
     </div>
   )
 }

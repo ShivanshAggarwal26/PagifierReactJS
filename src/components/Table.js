@@ -9,7 +9,8 @@ const Table = (props) => {
     return (
         <table>
             <Thead />
-            <Tbody data={props.data} onSaveRowData={saveRowDataHandler} pageValue={props.pageValue}/>
+            <Tbody data={props.data} onSaveRowData={saveRowDataHandler}
+                    pageValue={props.pageValue} scaleValue={props.scale} />
             {/* <Tbody data={props.data} />  */}
         </table>
     )
