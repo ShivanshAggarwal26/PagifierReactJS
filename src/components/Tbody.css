@@ -2,3 +2,8 @@ td {
     padding: 10px 20px;
     border: 1px solid black;
 }
+
+/* tbody {
+    display: block;
+    overflow: scroll;
+} */

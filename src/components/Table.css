@@ -1,4 +1,10 @@
 table {
     border-collapse: collapse;
     border-spacing: 0;
+    table-layout: fixed;
 }
+
+/* .tableClass {
+    height: 435px;
+    overflow: auto;
+  } */
