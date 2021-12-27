@@ -24,9 +24,9 @@
 
 // export default App;
 
-import Tabs from './components/Tabs';
-import Table from './components/Table';
-import React, { useState } from 'react';
+import Tabs from './components/tabs/Tabs';
+import Table from './components/table/Table';
+import React, { useState } from 'react'
 const students = [];
 
 for (let i = 0; i < 50; i++) {

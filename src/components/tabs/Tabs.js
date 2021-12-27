@@ -1,5 +1,5 @@
 import './Tabs.css';
-import Dropdown from './Dropdown';
+import Dropdown from '../dropdown/Dropdown';
 
 const Tabs = (props) => {
     let page = props.pageValue;
