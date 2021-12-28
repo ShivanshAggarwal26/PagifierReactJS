@@ -1,1 +1,1 @@
-q
+The project is to create a paginated table usinng reactJS.
