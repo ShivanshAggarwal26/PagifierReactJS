@@ -1,6 +1,10 @@
+import {useContext} from 'react';
+import MainContainer from '../../context/MainContext';
+
 const Dropdown = (props) => {
+    const ctx = useContext(MainContainer);
     const dropdownHandler = (event) => {
-        props.onValueChange(event.target.value);
+        ctx.updateScaleData(+event.target.value);
     }
     return (
         <select onChange={dropdownHandler}>

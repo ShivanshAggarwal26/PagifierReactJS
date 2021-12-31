@@ -1,5 +1,7 @@
 import './Tbody.css';
 import Trow from './Trow';
+import {useContext} from 'react';
+import MainContext from '../../context/MainContext';
 
 const Tbody = (props) => {
     const rows = props.data.map(item => {
@@ -7,8 +9,12 @@ const Tbody = (props) => {
         }
     );
     props.onSaveRowData(rows);
-    const page = props.pageValue;
-    const scale = props.scaleValue;
+
+    const ctx = useContext(MainContext);
+    const page = ctx.pageData;
+    const scale = ctx.scaleData;
+    console.log(page);
+    console.log("and" + scale);
     return (
         <tbody>
             {rows.slice(page, page + scale)}
