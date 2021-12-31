@@ -19,14 +19,21 @@ code {
 }
 
 .container {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  /* position: absolute; */
+  /* left: 50%;
+  top: 50%; */
+  /* transform: translate(-50%, -50%); */
+  display: flex;
+  justify-content: space-around;
   width: auto;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding: 2rem;
-  overflow-y: auto;
+  /* overflow-y: auto; */
+}
+
+.innerClass {
+  padding: 2rem;
+  border: 1px solid black;
 }
 
 .tableClass {
