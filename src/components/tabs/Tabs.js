@@ -1,18 +1,15 @@
 import './Tabs.css';
 import Dropdown from '../dropdown/Dropdown';
-import {useContext} from 'react';
-import MainContext from '../../context/MainContext';
 
 const Tabs = (props) => {
-    const ctx = useContext(MainContext);
 
-    let page = ctx.pageData;
+    let page = props.page;
     let max = props.maxLength;
 
-    let scale = ctx.scaleData;
+    let scale = props.scale;
     const firstClickHandler = () => {
         page = 0;
-        ctx.update(page);
+        props.updatePageData(page);
     }
     const previousClickHandler = () => {
         if (page < scale) {
@@ -28,11 +25,11 @@ const Tabs = (props) => {
         } else {
             page -= scale;
         }
-        ctx.update(page);
+        props.updatePageData(page);
     }
     const nextClickHandler = () => {
         (page >= max - scale) ? page = 0: page += scale;
-        ctx.update(page);
+        props.updatePageData(page);
     }
     const lastClickHandler = () => {
         if (max % scale === 0) {
@@ -40,9 +37,12 @@ const Tabs = (props) => {
         } else {
             page = max - (max % scale);
         }
-        ctx.update(page);
+        props.updatePageData(page);
     }
 
+    const updateScaleValueHandler = (scaleValue) => {
+        props.updateScaleData(scaleValue);
+    }
     const pageNumber = Math.floor(page / scale) + 1;
     return (
         <div className='tabs'>
@@ -52,7 +52,7 @@ const Tabs = (props) => {
             <div className='next' onClick={nextClickHandler}>{'>'}</div>
             <div className='last' onClick={lastClickHandler}>{'>>'}</div>
             <div></div>
-            <Dropdown />
+            <Dropdown updateScaleValue={updateScaleValueHandler}/>
         </div>
     )
 }
