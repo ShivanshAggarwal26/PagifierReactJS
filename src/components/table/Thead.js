@@ -2,12 +2,13 @@ import './Thead.css';
 
 const Thead = (props) => {
     const headings = props.data;
+    const tableHeadings = headings.map((heading) => {
+        return <th>{heading}</th>
+    });
     return (
         <thead>
             <tr>
-                <th>{headings[0]}</th>
-                <th>{headings[1]}</th>
-                <th>{headings[2]}</th>
+                {tableHeadings}
             </tr>
         </thead>
     );
