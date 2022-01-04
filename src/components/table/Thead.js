@@ -2,8 +2,9 @@ import './Thead.css';
 
 const Thead = (props) => {
     const headings = props.data;
+    let i = 0;
     const tableHeadings = headings.map((heading) => {
-        return <th>{heading}</th>
+        return <th key={i++}>{heading}</th>
     });
     return (
         <thead>
