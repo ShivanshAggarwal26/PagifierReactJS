@@ -1,9 +1,9 @@
 const Trow = (props) => {
     return (
         <tr>
-            <td>{props.data.rollNo}</td>
-            <td>{props.data.name}</td>
-            <td>{props.data.emailId}</td>
+            <td>{props.data[0] + 1}</td>
+            <td>{props.data[1]}</td>
+            <td>{props.data[2]}</td>
         </tr>
     );
 }

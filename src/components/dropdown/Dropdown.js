@@ -1,7 +1,9 @@
 const Dropdown = (props) => {
+
     const dropdownHandler = (event) => {
-        props.onValueChange(event.target.value);
+        props.updateScaleValue(+event.target.value);
     }
+
     return (
         <select onChange={dropdownHandler}>
             <option>{10}</option>
