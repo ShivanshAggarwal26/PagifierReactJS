@@ -3,20 +3,36 @@ import Student from './layout/Student';
 import Employee from './layout/Employee';
 import StudentState from './context/StudentState';
 import EmployeeState from './context/EmployeeState';
+import { useDispatch, useSelector } from 'react-redux';
+import { showTableActions } from './store/table-show-slice';
 
 function App() {
-  
+  const dispatch = useDispatch();
+
+  const showStudent = useSelector((state) => {
+    return state.showTable.studentTableVisible;
+  })
+
+  const toggleStudentTableHandler = () => {
+    dispatch(showTableActions.toggleStudentTable());
+  }
+
   return (
     <div className='container'>
-      <StudentState>
+      {/* <StudentState>
         <Student />
-      </StudentState>
+      </StudentState> */}
+      {/* <div></div> */}
+      <button onClick={toggleStudentTableHandler}>
+        <span>STUDENT TABLE</span>
+      </button>
+      {showStudent && <Student />}
 
-      <EmployeeState>
+      {/* <EmployeeState>
         <Employee />
-      </EmployeeState>
+      </EmployeeState> */}
     </div>
   )
 }
 
-export default App;
+export default App
