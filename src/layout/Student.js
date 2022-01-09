@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import GetStudentData from "../views/GetStudentData"
+import GetStudentData from "../views/GetStudentData";
 import Table from "../components/table/Table";
 import Tabs from "../components/tabs/Tabs";
 import StudentContext from "../context/StudentContext";
@@ -20,8 +20,13 @@ const Student = () => {
         return state.studentState;
     });
 
+    const newStudentData = useSelector((state) => {
+        return state.inputDataState.newData;
+    });
+
     const page = studentState.pageData;
     const scale = studentState.scaleData;
+    const newDataLength = newStudentData.length;
 
     const dispatch = useDispatch();
 
@@ -35,13 +40,13 @@ const Student = () => {
         dispatch(studentStateActions.updateScale(scaleValue));
     }
 
-    const rows = <GetStudentData page={page} scale={scale} />
+    const rows = <GetStudentData page={page} scale={scale} newStudentData={newStudentData}/>
     return (
         <div className="innerClass">
             <div className="tableClass">
                 <Table headings={headings} rows={rows} />
             </div>
-            <Tabs maxLength={50}
+            <Tabs maxLength={50 + newDataLength}
                 page={page} scale={scale}
                 updatePageData={updatePageDataHandler}
                 updateScaleData={updateScaleDataHandler} />

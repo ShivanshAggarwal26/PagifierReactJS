@@ -7,7 +7,8 @@ const GetStudentData = (props) => {
 
     const page = props.page;
     const scale = props.scale;
-    const getStudentData = async (page = 0, scale = 0) => {
+    const newStudentData = props.newStudentData;
+    const getStudentData = async (page = 0, scale = 0, newStudentData) => {
         const maxlen = 50;
         try {
             const response = await fetch('https://react-http-4d12b-default-rtdb.firebaseio.com/students.json');
@@ -17,16 +18,25 @@ const GetStudentData = (props) => {
             }
             const data = await response.json();
 
-            const newData = [];
+            let newData = [];
 
             for (let i = page; i < page + scale && i < maxlen; i++) {
                 for (const key in data) {
                     newData.push({
-                        rollNo: i,
+                        rollNo: i + 1,
                         name: data[key][i].name,
                         emailId: data[key][i].emailId
                     })
                 }
+            }
+
+            const newDataLength = newData.length;
+            if (newDataLength === 0) {
+                newData = newData.concat(newStudentData.slice(page - maxlen, page - maxlen + scale));
+                console.log(newData)
+            } else if (newDataLength < scale) {
+                const remainingDataLength = scale - newDataLength;
+                newData = newData.concat(newStudentData.slice(0, remainingDataLength));
             }
 
             const rows = newData.map((item) => {
@@ -42,8 +52,8 @@ const GetStudentData = (props) => {
     }
 
     useEffect(() => {
-        getStudentData(page, scale);
-    }, [page, scale]);
+        getStudentData(page, scale, newStudentData);
+    }, [page, scale, newStudentData]);
     return rowData;
 }
 

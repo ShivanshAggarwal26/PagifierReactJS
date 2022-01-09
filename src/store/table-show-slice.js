@@ -10,7 +10,6 @@ const showTableSlice = createSlice({
     reducers: {
         toggleStudentTable(state) {
             state.studentTableVisible = !state.studentTableVisible;
-            console.log(state.studentTableVisible);
         }
     }
 });
