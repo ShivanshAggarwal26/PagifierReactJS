@@ -7,7 +7,7 @@ const GetStudentData = (props) => {
 
     const page = props.page;
     const scale = props.scale;
-    const newStudentData = props.newStudentData;
+    const newStudentData = props.newStudentData
     const getStudentData = async (page = 0, scale = 0, newStudentData) => {
         const maxlen = 50;
         try {
@@ -30,13 +30,13 @@ const GetStudentData = (props) => {
                 }
             }
 
-            const newDataLength = newData.length;
+            const newDataLength = newData.length
             if (newDataLength === 0) {
-                newData = newData.concat(newStudentData.slice(page - maxlen, page - maxlen + scale));
+                newData = newData.concat(newStudentData.slice(page - maxlen, page - maxlen + scale))
                 console.log(newData)
             } else if (newDataLength < scale) {
-                const remainingDataLength = scale - newDataLength;
-                newData = newData.concat(newStudentData.slice(0, remainingDataLength));
+                const remainingDataLength = scale - newDataLength
+                newData = newData.concat(newStudentData.slice(0, remainingDataLength))
             }
 
             const rows = newData.map((item) => {
@@ -52,9 +52,9 @@ const GetStudentData = (props) => {
     }
 
     useEffect(() => {
-        getStudentData(page, scale, newStudentData);
-    }, [page, scale, newStudentData]);
-    return rowData;
+        getStudentData(page, scale, newStudentData)
+    }, [page, scale, newStudentData])
+    return rowData
 }
 
-export default GetStudentData;
+export default GetStudentData

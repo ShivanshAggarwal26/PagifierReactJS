@@ -4,36 +4,48 @@ import Table from "../components/table/Table";
 import Tabs from "../components/tabs/Tabs";
 import { useSelector, useDispatch } from "react-redux";
 import { studentStateActions } from "../store/student-slice";
-import StudentInputForm from "../views/StudentInputForm";
+import { inputDataActions } from "../store/input-data-slice";
+import InputForm from "../components/forms/InputForm";
 
 const Student = () => {
     const headings = [];
     headings.push("Roll Number");
     headings.push("Name");
     headings.push("Email Id");
+
     const studentState = useSelector((state) => {
-        return state.studentState;
-    });
+        return state.studentState
+    })
 
     const newStudentData = useSelector((state) => {
-        return state.inputDataState.newData;
-    });
+        return state.inputDataState.newStudentData
+    })
 
-    const page = studentState.pageData;
-    const scale = studentState.scaleData;
-    const newDataLength = newStudentData.length;
+    const page = studentState.pageData
+    const scale = studentState.scaleData
+    const newDataLength = newStudentData.length
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
     const updatePageDataHandler = (pageValue) => {
-        dispatch(studentStateActions.updatePage(pageValue));
+        dispatch(studentStateActions.updatePage(pageValue))
     }
 
     const updateScaleDataHandler = (scaleValue) => {
-        dispatch(studentStateActions.updateScale(scaleValue));
+        dispatch(studentStateActions.updateScale(scaleValue))
+    }
+
+    const updateStudentInputDataHandler = (inputValue) => {
+        const inputData = {
+            rollNo: inputValue.enteredNumber,
+            name: inputValue.enteredName,
+            emailId: inputValue.enteredEmail
+        }
+        dispatch(inputDataActions.setNewStudentInputData(inputData))
     }
 
     const rows = <GetStudentData page={page} scale={scale} newStudentData={newStudentData}/>
+    
     return (
         <div className="innerClass">
             <div className="tableClass">
@@ -43,7 +55,8 @@ const Student = () => {
                 page={page} scale={scale}
                 updatePageData={updatePageDataHandler}
                 updateScaleData={updateScaleDataHandler} />
-            <StudentInputForm />
+            <InputForm tagNames={headings}
+                setInputData={updateStudentInputDataHandler}/>
         </div>
     )
 }
