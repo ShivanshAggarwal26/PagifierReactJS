@@ -2,8 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     enteredNumber: '',
-    enteredNumberTouched: false,
-    numberInputValid: false
+    enteredNumberTouched: false
 };
 
 const numberInputSlice = createSlice({
@@ -15,9 +14,6 @@ const numberInputSlice = createSlice({
         },
         setEnteredNumberTouched(state, action) {
             state.enteredNumberTouched = action.payload;
-        },
-        setNumberInputValid(state, action) {
-            state.numberInputValid = action.payload;
         }
     }
 });
